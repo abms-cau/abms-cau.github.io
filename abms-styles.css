@@ -701,6 +701,12 @@
     border-bottom:1px solid rgba(255,255,255,.12);}
   footer .brand-txt{color:var(--white);}
   footer p{font-size:14.5px;line-height:1.75;margin-top:16px;max-width:36ch;}
+  .cau-sig{
+    display:inline-block;margin-top:22px;line-height:0;
+    opacity:.92;transition:opacity .15s;
+  }
+  .cau-sig:hover{opacity:1;}
+  .cau-sig img{height:40px;width:auto;display:block;}
   footer h4{color:var(--white);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
     font-family:'Manrope',sans-serif;font-weight:700;margin-bottom:16px;}
   footer ul{list-style:none;margin:0;padding:0;font-size:14.5px;line-height:2.1;}
