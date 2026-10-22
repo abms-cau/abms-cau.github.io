@@ -119,8 +119,8 @@
   .hero .wrap{position:relative;z-index:3;}
   .hero-bg{
     position:absolute;inset:0;z-index:1;opacity:1;
-    -webkit-mask-image:linear-gradient(95deg,transparent 0%,transparent 36%,#000 66%,#000 100%);
-    mask-image:linear-gradient(95deg,transparent 0%,transparent 36%,#000 66%,#000 100%);
+    -webkit-mask-image:linear-gradient(95deg,transparent 0%,transparent 45%,#000 72%,#000 100%);
+    mask-image:linear-gradient(95deg,transparent 0%,transparent 45%,#000 72%,#000 100%);
   }
   .hero-bg svg{width:100%;height:100%;display:block;}
   .ch{fill:none;stroke:rgba(32,56,84,.14);stroke-width:1.5;}
