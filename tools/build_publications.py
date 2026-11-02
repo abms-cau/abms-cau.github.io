@@ -112,8 +112,9 @@ BOOKS = """
 """
 
 PREPRINTS = """
-    <div class="pubgroup second">
-      <h2>Preprints</h2>
+    <div class="pubgroup">
+      <h2>Work in Progress</h2>
+      <span class="ct">Preprints, manuscripts under review and in preparation</span>
     </div>
 
     <div class="yearblock">
@@ -149,12 +150,12 @@ def main():
     body = (
         '<section class="pubs">\n'
         '  <div class="wrap">\n'
-        '    <div class="pubgroup">\n'
+        + PREPRINTS
+        + '    <div class="pubgroup second">\n'
         "      <h2>Journal Articles</h2>\n"
         "    </div>\n\n"
         + journal_blocks()
         + BOOKS
-        + PREPRINTS
         + FOOTNOTE
         + "  </div>\n</section>\n\n"
     )
