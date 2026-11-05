@@ -58,6 +58,28 @@
     font-size:14.5px;font-weight:600;}
   .navlinks a{text-decoration:none;color:var(--gray);transition:color .15s;}
   .navlinks a:hover{color:var(--navy);}
+  /* nav dropdown */
+  .navlinks .has-sub{position:relative;}
+  .subnav{
+    position:absolute;top:calc(100% + 20px);left:-16px;
+    min-width:158px;list-style:none;margin:0;padding:6px;
+    background:var(--white);
+    border:1px solid var(--line);border-radius:9px;
+    box-shadow:0 14px 34px rgba(20,42,68,.13);
+    opacity:0;visibility:hidden;transform:translateY(-5px);
+    transition:opacity .15s,transform .15s,visibility .15s;
+    z-index:70;
+  }
+  /* bridges the gap so the menu survives the trip from the label */
+  .subnav::before{content:'';position:absolute;left:0;right:0;top:-24px;height:24px;}
+  .has-sub:hover > .subnav,
+  .has-sub:focus-within > .subnav{opacity:1;visibility:visible;transform:none;}
+  .subnav a{
+    display:block;padding:9px 13px;border-radius:6px;
+    font-size:14px;font-weight:600;color:var(--gray);white-space:nowrap;
+  }
+  .subnav a:hover{background:var(--off);color:var(--navy);}
+
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
     font-weight:700;font-size:14.5px;
@@ -106,6 +128,14 @@
     .navlinks a{display:block;padding:14px 2px;font-size:16px;}
     .navlinks a.active{color:var(--blue);}
     .navlinks a.active::after{display:none;}
+    .navlinks .has-sub{position:static;}
+    .subnav{
+      position:static;opacity:1;visibility:visible;transform:none;
+      background:transparent;border:0;box-shadow:none;
+      padding:0 0 0 16px;min-width:0;
+    }
+    .subnav::before{display:none;}
+    .subnav a{padding:12px 2px;font-size:15px;}
   }
 
   /* ---------- HERO ---------- */
@@ -286,26 +316,11 @@
   }
 
 
-  /* ---------- PEOPLE SUB-TABS (CSS only, driven by :target) ---------- */
-  .ptabs{
-    display:flex;gap:30px;
-    border-bottom:1.5px solid var(--line);
-    margin-bottom:44px;
-  }
-  .ptabs a{
-    font-size:15.5px;font-weight:700;text-decoration:none;color:var(--gray);
-    padding:0 2px 13px;margin-bottom:-1.5px;
-    border-bottom:2.5px solid transparent;
-    transition:color .15s,border-color .15s;
-  }
-  .ptabs a:hover{color:var(--navy);}
-  /* Members leads by default; :target swaps the pair */
-  .ptabs a[href="#members"]{color:var(--navy);border-bottom-color:var(--blue);}
+  /* ---------- PEOPLE PANES (CSS only, driven by :target) ---------- */
+  /* Members leads by default; the People dropdown's Gallery link swaps the pair */
   .ppane[data-pane="gallery"]{display:none;}
   #gallery:target ~ .ppane[data-pane="members"]{display:none;}
   #gallery:target ~ .ppane[data-pane="gallery"]{display:block;}
-  #gallery:target ~ .ptabs a[href="#members"]{color:var(--gray);border-bottom-color:transparent;}
-  #gallery:target ~ .ptabs a[href="#gallery"]{color:var(--navy);border-bottom-color:var(--blue);}
 
   /* ---------- GALLERY ---------- */
   .ggrid{
@@ -325,7 +340,6 @@
   @media(max-width:900px){.ggrid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){
     .ggrid{grid-template-columns:1fr;}
-    .ptabs{gap:22px;margin-bottom:32px;}
   }
 
   /* ---------- PEOPLE ---------- */
