@@ -55,6 +55,13 @@
 <!-- ============ PEOPLE ============ -->
 <section class="people">
   <div class="wrap">
+    <span id="members"></span><span id="gallery"></span>
+    <div class="ptabs">
+      <a href="#members">Members</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+
+    <div class="ppane" data-pane="members">
     <!-- PI -->
     <div class="pi-row">
       <div class="portrait">
@@ -249,8 +256,67 @@
         <p class="topic">Undergraduate internships open year-round</p>
       </div>
     </div>
+    </div>
+
+    <div class="ppane" data-pane="gallery">
+
+      <!-- Add a photo by copying one figure block and dropping the files in
+           assets/gallery/. Keep a .webp and a .jpg of the same image, and give
+           -full.webp the full-size version the lightbox opens. -->
+      <div class="gempty">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#9DB0C2" stroke-width="1.6"/>
+          <circle cx="8.5" cy="10" r="1.7" stroke="#9DB0C2" stroke-width="1.5"/>
+          <path d="M4.5 17.5 L9.5 12.5 L13 16 L15.5 13.5 L19.5 17.5" stroke="#9DB0C2"
+                stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>Photos from the lab coming soon.</p>
+      </div>
+
+      <div class="ggrid">
+      </div>
+
+    </div>
+
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo">
+  <button type="button" class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'),img=document.getElementById('lbImg'),
+      cap=document.getElementById('lbCap'),closeBtn=document.getElementById('lbClose'),last=null;
+  function open(btn){
+    last=btn;
+    img.src=btn.dataset.full;
+    var im=btn.querySelector('img');
+    img.alt=im?im.alt:'';
+    cap.textContent=btn.dataset.cap||'';
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function close(){
+    lb.classList.remove('open');
+    document.body.style.overflow='';
+    img.src='';
+    if(last){last.focus();last=null;}
+  }
+  document.querySelectorAll('.figbtn').forEach(function(b){
+    b.addEventListener('click',function(){open(b);});
+  });
+  closeBtn.addEventListener('click',close);
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&lb.classList.contains('open'))close();
+  });
+})();
+</script>
 
 <!-- ============ CTA BAND ============ -->
 <section class="band">

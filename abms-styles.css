@@ -286,6 +286,48 @@
   }
 
 
+  /* ---------- PEOPLE SUB-TABS (CSS only, driven by :target) ---------- */
+  .ptabs{
+    display:flex;gap:30px;
+    border-bottom:1.5px solid var(--line);
+    margin-bottom:44px;
+  }
+  .ptabs a{
+    font-size:15.5px;font-weight:700;text-decoration:none;color:var(--gray);
+    padding:0 2px 13px;margin-bottom:-1.5px;
+    border-bottom:2.5px solid transparent;
+    transition:color .15s,border-color .15s;
+  }
+  .ptabs a:hover{color:var(--navy);}
+  /* Members leads by default; :target swaps the pair */
+  .ptabs a[href="#members"]{color:var(--navy);border-bottom-color:var(--blue);}
+  .ppane[data-pane="gallery"]{display:none;}
+  #gallery:target ~ .ppane[data-pane="members"]{display:none;}
+  #gallery:target ~ .ppane[data-pane="gallery"]{display:block;}
+  #gallery:target ~ .ptabs a[href="#members"]{color:var(--gray);border-bottom-color:transparent;}
+  #gallery:target ~ .ptabs a[href="#gallery"]{color:var(--navy);border-bottom-color:var(--blue);}
+
+  /* ---------- GALLERY ---------- */
+  .ggrid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .ggrid .figbtn{border:1px solid var(--line);border-radius:10px;background:var(--white);}
+  .ggrid .figbtn img{aspect-ratio:4/3;object-fit:cover;}
+  .ggrid figcaption{font-size:13px;line-height:1.6;color:var(--gray);margin-top:9px;}
+  .gempty{
+    border:1.5px dashed var(--line);border-radius:12px;
+    padding:64px 24px;text-align:center;
+  }
+  .gempty p{font-size:14.5px;color:var(--gray);margin-top:12px;}
+  /* the empty state and the grid are mutually exclusive */
+  .ppane[data-pane="gallery"]:has(.ggrid figure) .gempty{display:none;}
+  .ppane[data-pane="gallery"]:not(:has(.ggrid figure)) .ggrid{display:none;}
+  @media(max-width:900px){.ggrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){
+    .ggrid{grid-template-columns:1fr;}
+    .ptabs{gap:22px;margin-bottom:32px;}
+  }
+
   /* ---------- PEOPLE ---------- */
   .people{background:var(--paper);}
   .pi-row{
